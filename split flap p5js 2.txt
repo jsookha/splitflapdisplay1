@@ -1,0 +1,195 @@
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']; // Added space character
+let targetString = "WATERLOO STATION 13 00";
+// Pad the target string with spaces until it's 32 characters long
+while (targetString.length < 32) {
+  targetString += ' ';
+}
+let currentNumber = Array(32).fill(0);
+let flapSpeed = 0.1;
+let flapPosition = Array(32).fill(0);
+let isFlapping = Array(32).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 300);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 32; i++) {
+    let x = 5 + i * 200;
+
+    // Draw the current character and the next character
+    text(characters[currentNumber[i]], x + 100, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 200, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 200, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % characters.length;
+        if (characters[currentNumber[i]] === targetString[i]) {
+          isFlapping[i] = false;
+        }
+      }
+    }
+  }
+}
+
+can you please add 10 lines of 32 blocks. 
+Change the targetString variable into an array that contains the following values in each of the cells of the array: 
+
+St Helier	1930
+St James Street 1870
+St Johns 1849
+St Margarets 1876
+St Mary Cray 1858
+St Pancras 1868
+Sanderstead 1884
+Selhurst 1865
+Seven Kings 1899
+Seven Sisters 1872
+
+The program must follow the same logic, but now display a total of 10 lines of 32 blocks each
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']; // Added space character
+
+let targetStrings = [
+  "St Helier  1930",
+  "St James St 1870",
+  "St Johns    1849",
+  "St Margarets 1876",
+  "St Mary Cray 1858",
+  "St Pancras  1868",
+  "Sanderstead 1884",
+  "Selhurst   1865",
+  "Seven Kings 1899",
+  "Seven Sisters 1872"
+];
+
+let currentNumbers = Array(32 * 10).fill(0);
+let flapSpeed = 0.1;
+let flapPositions = Array(32 * 10).fill(0);
+let isFlapping = Array(32 * 10).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 300 * 10);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let lineIndex = 0; lineIndex < 10; lineIndex++) {
+    for (let i = 0; i < 32; i++) {
+      let x = 5 + i * 200;
+      let y = height / 2 + lineIndex * height;
+
+      // Draw the current character and the next character
+      text(characters[currentNumbers[lineIndex * 32 + i]], x + 100, y + flapPositions[lineIndex * 32 + i] / 2 + 50); // Edited line
+      line(x, y, x + 200, y);
+
+      // Draw the flap
+      fill('#333333');
+      noStroke();
+      rect(x, y - flapPositions[lineIndex * 32 + i], 200, flapPositions[lineIndex * 32 + i]);
+
+      // Animate the flap
+      if (isFlapping[lineIndex * 32 + i]) {
+        flapPositions[lineIndex * 32 + i] += flapSpeed * height;
+        if (flapPositions[lineIndex * 32 + i] > height / 2) {
+          flapPositions[lineIndex * 32 + i] = 0;
+          currentNumbers[lineIndex * 32 + i] = (currentNumbers[lineIndex * 32 + i] + 1) % characters.length;
+          if (characters[currentNumbers[lineIndex * 32 + i]] === targetStrings[lineIndex][i]) {
+            isFlapping[lineIndex * 32 + i] = false;
+          }
+        }
+      }
+    }
+  }
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']; // Added space character
+
+let targetStrings = [
+  "St Helier  1930",
+  "St James St 1870",
+  "St Johns    1849",
+  "St Margarets 1876",
+  "St Mary Cray 1858",
+  "St Pancras  1868",
+  "Sanderstead 1884",
+  "Selhurst   1865",
+  "Seven Kings 1899",
+  "Seven Sisters 1872"
+];
+
+// Pad each string in the targetStrings array to be 32 characters long
+for (let i = 0; i < targetStrings.length; i++) {
+  while (targetStrings[i].length < 32) {
+    targetStrings[i] += ' ';
+  }
+}
+
+let currentNumbers = Array(32 * 10).fill(0);
+let flapSpeed = 0.1;
+let flapPositions = Array(32 * 10).fill(0);
+let isFlapping = Array(32 * 10).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 1500); // Adjusted canvas height
+  textAlign(CENTER, CENTER);
+  textSize(100); // Adjusted font size
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let lineIndex = 0; lineIndex < 10; lineIndex++) {
+    for (let i = 0; i < 32; i++) {
+      let x = 5 + i * (100 + 5); // Adjusted block width and gap
+      let y = height / 2 + lineIndex * 150; // Adjusted block height
+
+      // Draw the current character and the next character
+      text(characters[currentNumbers[lineIndex * 32 + i]], x + 50, y + flapPositions[lineIndex * 32 + i] / 2 + 25); // Adjusted text position and font size
+      line(x, y, x + 100, y); // Adjusted line width
+
+      // Draw the flap
+      fill('#333333');
+      noStroke();
+      rect(x, y - flapPositions[lineIndex * 32 + i], 100, flapPositions[lineIndex * 32 + i]); // Adjusted flap dimensions
+
+      // Animate the flap
+      if (isFlapping[lineIndex * 32 + i]) {
+        flapPositions[lineIndex * 32 + i] += flapSpeed * height;
+        if (flapPositions[lineIndex * 32 + i] > height / 2) {
+          flapPositions[lineIndex * 32 + i] = 0;
+          currentNumbers[lineIndex * 32 + i] = (currentNumbers[lineIndex * 32 + i] + 1) % characters.length;
+          if (characters[currentNumbers[lineIndex * 32 + i]] === targetStrings[lineIndex][i]) {
+            isFlapping[lineIndex * 32 + i] = false;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------

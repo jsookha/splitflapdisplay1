@@ -1,0 +1,284 @@
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let currentNumber = 0;
+let flapSpeed = 0.1;
+let flapPosition = 0;
+let isFlapping = false;
+
+function setup() {
+  createCanvas(300, 500);
+  textAlign(CENTER, CENTER);
+  textSize(500);
+  fill(255);
+}
+
+function draw() {
+  background(0);
+  stroke(255);
+
+  // Draw the current number and the next number
+  // The second parameter of the text function determines the vertical position of the text
+  // I've added 50 to move the text down by 50 pixels
+  text(numbers[currentNumber], width / 2, height / 2 + flapPosition / 2 + 50); // Edited line
+  line(0, height / 2, width, height / 2);
+  
+  // Draw the flap
+  fill(0);
+  noStroke();
+  rect(0, 0, width, flapPosition);
+
+  // Animate the flap
+  if (isFlapping) {
+    flapPosition += flapSpeed * height;
+    if (flapPosition > height / 2) {
+      flapPosition = 0;
+      currentNumber = (currentNumber + 1) % 10;
+      isFlapping = false;
+    }
+  }
+}
+
+function mousePressed() {
+  isFlapping = true;
+  text(numbers[(currentNumber + 1) % 10], width / 2, 3 * height / 4 + flapPosition / 2 + 50); // Edited line
+}
+
+//=========================================================================================================================
+
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let currentNumber = [0, 0, 0];
+let flapSpeed = 0.1;
+let flapPosition = [0, 0, 0];
+let isFlapping = [false, false, false];
+
+function setup() {
+  createCanvas(940, 500);
+  textAlign(CENTER, CENTER);
+  textSize(500);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 3; i++) {
+    let x = 10 + i * 310;
+
+    // Draw the current number and the next number
+    text(numbers[currentNumber[i]], x + 150, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 300, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 300, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % 10;
+        isFlapping[i] = false;
+      }
+    }
+  }
+}
+
+function mousePressed() {
+  for (let i = 0; i < 3; i++) {
+    isFlapping[i] = true;
+    let x = 10 + i * 310;
+    text(numbers[(currentNumber[i] + 1) % 10], x + 150, 3 * height / 4 + flapPosition[i] / 2 + 50); // Edited line
+  }
+}
+
+//=========================================================================================================================
+
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let targetNumber = [7, 8, 6]; // The number to display
+let currentNumber = [0, 0, 0];
+let flapSpeed = 0.5;
+let flapPosition = [0, 0, 0];
+let isFlapping = [true, true, true]; // Start flapping immediately
+
+function setup() {
+  createCanvas(940, 300);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 3; i++) {
+    let x = 10 + i * 310;
+
+    // Draw the current number and the next number
+    text(numbers[currentNumber[i]], x + 150, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 900, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 300, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % 10;
+        if (currentNumber[i] === targetNumber[i]) {
+          isFlapping[i] = false;
+        }
+      }
+    }
+  }
+}
+
+//=========================================================================================================================
+
+
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+let targetString = "WATERLOO STATION 13 00";
+let currentNumber = Array(32).fill(0);
+let flapSpeed = 0.1;
+let flapPosition = Array(32).fill(0);
+let isFlapping = Array(32).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 300);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 32; i++) {
+    let x = 5 + i * 200;
+
+    // Draw the current character and the next character
+    text(characters[currentNumber[i]], x + 100, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 200, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 200, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % characters.length;
+        if (characters[currentNumber[i]] === targetString[i]) {
+          isFlapping[i] = false;
+        }
+      }
+    }
+  }
+}
+
+//=========================================================================================================================
+
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']; // Added space character
+let targetString = "WATERLOO STATION 13 00";
+let currentNumber = Array(32).fill(0);
+let flapSpeed = 0.1;
+let flapPosition = Array(32).fill(0);
+let isFlapping = Array(32).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 300);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 32; i++) {
+    let x = 5 + i * 200;
+
+    // Draw the current character and the next character
+    text(characters[currentNumber[i]], x + 100, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 200, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 200, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % characters.length;
+        if (characters[currentNumber[i]] === targetString[i]) {
+          isFlapping[i] = false;
+        }
+      }
+    }
+  }
+}
+
+
+//=========================================================================================================================
+
+let characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']; // Added space character
+let targetString = "WATERLOO STATION 13 00";
+// Pad the target string with spaces until it's 32 characters long
+while (targetString.length < 32) {
+  targetString += ' ';
+}
+let currentNumber = Array(32).fill(0);
+let flapSpeed = 0.1;
+let flapPosition = Array(32).fill(0);
+let isFlapping = Array(32).fill(true); // Start flapping immediately
+
+function setup() {
+  createCanvas(6460, 300);
+  textAlign(CENTER, CENTER);
+  textSize(200);
+  fill('#333333');
+}
+
+function draw() {
+  background('#fefefe');
+  stroke('#333333');
+
+  for (let i = 0; i < 32; i++) {
+    let x = 5 + i * 200;
+
+    // Draw the current character and the next character
+    text(characters[currentNumber[i]], x + 100, height / 2 + flapPosition[i] / 2 + 50); // Edited line
+    line(x, height / 2, x + 200, height / 2);
+    
+    // Draw the flap
+    fill('#333333');
+    noStroke();
+    rect(x, 0, 200, flapPosition[i]);
+
+    // Animate the flap
+    if (isFlapping[i]) {
+      flapPosition[i] += flapSpeed * height;
+      if (flapPosition[i] > height / 2) {
+        flapPosition[i] = 0;
+        currentNumber[i] = (currentNumber[i] + 1) % characters.length;
+        if (characters[currentNumber[i]] === targetString[i]) {
+          isFlapping[i] = false;
+        }
+      }
+    }
+  }
+}
